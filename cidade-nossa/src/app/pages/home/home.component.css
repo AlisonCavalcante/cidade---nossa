@@ -1,0 +1,19 @@
+.card-header{
+  text-align: center;
+}
+.card__lateral{
+  padding: 5%;
+}
+.row-statistics{
+  padding: 5%;
+  border-bottom: 1px solid rgb(181, 179, 179);
+}
+.content{
+  display: flex;
+  justify-content: flex-end;
+}
+.content-button_reclamacoes{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
