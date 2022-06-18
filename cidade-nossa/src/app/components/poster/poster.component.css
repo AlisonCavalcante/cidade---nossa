@@ -1,0 +1,21 @@
+.card{
+  margin-top: 5%;
+  padding: 5%;
+}
+.title{
+  text-align: center;
+}
+.form-control{
+  margin-bottom: 10px;
+}
+.row{
+  padding: 0px;
+}
+.content-button{
+  text-align: center;
+}
+
+.content-button .btn{
+  margin: 10px;
+}
+
