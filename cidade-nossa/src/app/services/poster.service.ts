@@ -1,3 +1,4 @@
+import { IPoster } from './../shared/models/Poster';
 import { Constantes } from './../shared/Constantes';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -10,11 +11,11 @@ export class PosterService {
 
   constructor(private http: HttpClient) { }
 
-  getPosters(): Observable<any>{
-    return this.http.get<any>(Constantes.URL_BASE_POSTERS);
+  getPosters(): Observable<IPoster[]>{
+    return this.http.get<IPoster[]>(Constantes.URL_BASE_POSTERS);
   }
 
-  post(arquivo: any): Observable<any>{
-    return this.http.post<any>(Constantes.URL_BASE_POSTERS, arquivo);
+  post(arquivo: IPoster): Observable<IPoster>{
+    return this.http.post<IPoster>(Constantes.URL_BASE_POSTERS, arquivo);
   }
 }

@@ -4,6 +4,9 @@
 .card__lateral{
   padding: 5%;
 }
+.card__problemas-total .card-body{
+  text-align: center;
+}
 .row-statistics{
   padding: 5%;
   border-bottom: 1px solid rgb(181, 179, 179);
@@ -16,4 +19,21 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.card__posters{
+  margin-bottom: 20px;
+}
+
+.card__posters .card-header{
+  text-transform: uppercase;
+}
+
+.card__posters .card-header, .card-footer__hashtags{
+  color:rgb(31, 105, 193);
+}
+.card-footer__content-col{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

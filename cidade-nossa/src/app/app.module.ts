@@ -10,6 +10,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PosterComponent } from './components/poster/poster.component';
 import { RelatarProblemaComponent } from './pages/relatar-problema/relatar-problema.component';
+import { MensagensComponent } from './components/mensagens/mensagens.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { RelatarProblemaComponent } from './pages/relatar-problema/relatar-probl
     HeaderComponent,
     PosterComponent,
     RelatarProblemaComponent,
+    MensagensComponent,
   ],
   imports: [
     BrowserModule,
