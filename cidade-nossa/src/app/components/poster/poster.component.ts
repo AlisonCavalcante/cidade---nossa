@@ -53,10 +53,8 @@ export class PosterComponent implements OnInit, OnDestroy {
     this.posterService.post(this.formData).subscribe(res => console.log(res))
   } */
   this.posterService.post(this.form.value).subscribe(res => {
-    if(res){
       this.mensagensService.addMessage("Postagem realizada com Sucesso!");
       this.resetForm();
-    }
   });
   }
 }

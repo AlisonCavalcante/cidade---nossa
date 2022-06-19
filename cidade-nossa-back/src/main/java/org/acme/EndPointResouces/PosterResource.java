@@ -37,30 +37,28 @@ public class PosterResource {
         p.titulo = dto.titulo;
         p.descricao = dto.descricao;
         p.hashtags = dto.hashtags;
+        p.likes = 0;
         p.persist();
     }
 
-    /*
-     * @PUT
-     * 
-     * @Path("{id}")
-     * 
-     * @Transactional
-     * public void atualizarPoster(@PathParam("id") Long id, CadastroPosterDTO dto)
-     * {
-     * Optional<Poster> posterOp = Poster.findByIdOptional(id);
-     * 
-     * if(posterOp.isPresent()){
-     * Poster poster = posterOp.get();
-     * poster.titulo = dto.titulo;
-     * poster.descricao = dto.descricao;
-     * poster.hashtags = dto.hashtags;
-     * poster.persist();
-     * } else {
-     * throw new NotFoundException();
-     * }
-     * }
-     */
+    @PUT
+    @Path("{id}")
+    @Transactional
+    public void atualizarPoster(@PathParam("id") Long id, PosterDTO dto) {
+        Optional<Poster> posterOp = Poster.findByIdOptional(id);
+
+        if (posterOp.isPresent()) {
+            Poster poster = posterOp.get();
+            poster.titulo = dto.titulo;
+            poster.descricao = dto.descricao;
+            poster.hashtags = dto.hashtags;
+            poster.likes = dto.likes;
+            poster.persist();
+        } else {
+            throw new NotFoundException();
+        }
+    }
+
     @DELETE
     @Path("{id}")
     @Transactional

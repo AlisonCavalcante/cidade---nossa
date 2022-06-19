@@ -31,4 +31,8 @@ export class HomeComponent implements OnInit, OnDestroy {
   comentar(index: number){
 
   }
+  like(poster: IPoster){
+    poster.likes += 1;
+    this.posterService.updatePoster(poster).subscribe(res => console.log(res));
+  }
 }

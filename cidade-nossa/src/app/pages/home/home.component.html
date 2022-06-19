@@ -69,7 +69,8 @@
                 <p style="margin: 0"  class="card-footer__hashtags">{{ poster.hashtags }}</p>
               </div>
               <div class="col-md-4 card-footer__content-col">
-                <i style="cursor: pointer" class="fas fa-solid fa-thumbs-up"></i>
+                <i (click)="like(poster)" style="cursor: pointer" class="fas fa-solid fa-thumbs-up"></i>
+                {{poster.likes}}
               </div>
             </div>
           </div>

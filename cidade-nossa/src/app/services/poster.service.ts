@@ -18,4 +18,8 @@ export class PosterService {
   post(arquivo: IPoster): Observable<IPoster>{
     return this.http.post<IPoster>(Constantes.URL_BASE_POSTERS, arquivo);
   }
+
+  updatePoster(poster: IPoster): Observable<IPoster>{
+    return this.http.put<IPoster>(Constantes.URL_BASE_POSTERS+ `/${poster.id}`, poster);
+  }
 }
