@@ -1,3 +1,5 @@
+import { IComentario } from './../../shared/models/Comentario';
+import { ComentariosService } from './../../services/comentarios.service';
 import { IPoster } from './../../shared/models/Poster';
 import { PosterService } from './../../services/poster.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
@@ -12,8 +14,9 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   listPosters!: IPoster[];
   totalPostersCriados!: number;
+  comentarios!: IComentario[];
   subscription!: Subscription;
-  constructor(private posterService: PosterService) { }
+  constructor(private posterService: PosterService, private comentariosService: ComentariosService) { }
 
   ngOnInit(): void {
    this.subscription =  this.posterService.getPosters().subscribe(res =>{
@@ -22,6 +25,10 @@ export class HomeComponent implements OnInit, OnDestroy {
        console.log(this.totalPostersCriados)
        console.log(this.listPosters);
      })
+     this.comentariosService.getAll().subscribe(res => {
+      this.comentarios = res;
+      console.log(this.comentarios)
+     });
   }
 
   ngOnDestroy(): void {
