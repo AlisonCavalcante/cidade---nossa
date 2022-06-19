@@ -15,7 +15,6 @@ export class SearchComponent implements OnInit {
   }
 
   search(){
-    console.log(this.textSearch)
     this.emmitSearch.emit(this.textSearch);
   }
 }
