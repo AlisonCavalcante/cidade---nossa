@@ -11,9 +11,9 @@ export class HomeComponent implements OnInit {
   constructor(private posterService: PosterService) { }
 
   ngOnInit(): void {
-    this.posterService.getPosters().subscribe(res =>{
-      console.log(res);
-    })
+    // this.posterService.getPosters().subscribe(res =>{
+    //   console.log(res);
+    // })
   }
 
 }
