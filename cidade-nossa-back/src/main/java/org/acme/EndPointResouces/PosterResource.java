@@ -29,6 +29,13 @@ public class PosterResource {
         return Poster.listAll();
     }
 
+    @GET
+    @Path("/count")
+    public Long count() {
+        return Poster.count();
+    }
+
+
     @POST
     @Transactional
     @Consumes({ MediaType.APPLICATION_JSON })
