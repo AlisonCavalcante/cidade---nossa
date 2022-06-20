@@ -1,11 +1,52 @@
 .card-header{
   text-align: center;
 }
+.card__posters .card-header{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  align-content: center;
+
+}
+
+.card-posters__aberto, .card-posters__fechado{
+  background-color: rgb(241, 110, 110);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding: 5px;
+}
+
+.card-posters__aberto .card-posters__fechado{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.card-posters__aberto p, .card-posters__fechado p, .card__posters p{
+  margin: 0px 5px;
+}
+
+.card-posters__fechado{
+  background-color: greenyellow;
+}
+.card-posters__aberto
+
 .card__lateral{
   padding: 5%;
 }
-.card__problemas-total .card-body{
+.card__problemas-total, .card__problemas-resolvidos, .card__problemas-abertos{
   text-align: center;
+}
+
+.card__problemas-abertos .card-body{
+  color: red;
+}
+
+.card__problemas-resolvidos .card-body{
+  color: greenyellow;
 }
 .row-statistics{
   padding: 5%;
@@ -29,7 +70,7 @@
   text-transform: uppercase;
 }
 
-.card__posters .card-header, .card-footer__hashtags{
+.card__posters .card-header, .card-footer__hashtags, .btn-publicar{
   color:rgb(31, 105, 193);
 }
 .card-footer__content-col{

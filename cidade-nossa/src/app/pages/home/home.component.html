@@ -1,5 +1,14 @@
 <app-header></app-header>
 <div class="container my-3">
+  <div class="row">
+    <h4 style="text-align: center">Percentual de Problemas resolvidos</h4>
+  </div>
+  <div class="row my-4">
+    <app-progress-bar
+      [totalProblemasCriados]="totalPostersCriados"
+      [totalProblemasResolvidos]="totalPostersResolvidos"
+    ></app-progress-bar>
+  </div>
   <div class="row row-statistics">
     <div class="col-md-3">
       <div class="card shadow card__problemas-total">
@@ -7,24 +16,28 @@
           Problemas Relatados <i class="fas fa-light fa-bullhorn"></i>
         </div>
         <div class="card-body">
-          <h1>{{totalPostersCriados}}</h1>
+          <h1>{{ totalPostersCriados }}</h1>
         </div>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card shadow">
+      <div class="card shadow card__problemas-abertos">
         <div class="card-header">
           Problemas Em Aberto <i class="fas fa-light fa-bug"></i>
         </div>
-        <div class="card-body"></div>
+        <div class="card-body">
+          <h1>{{ totalPostersCriados - totalPostersResolvidos }}</h1>
+        </div>
       </div>
     </div>
     <div class="col-md-3">
-      <div class="card shadow">
+      <div class="card shadow card__problemas-resolvidos">
         <div class="card-header">
           Problemas Resolvidos <i class="fas fa-light fa-check"></i>
         </div>
-        <div class="card-body"></div>
+        <div class="card-body">
+          <h1>{{ totalPostersResolvidos }}</h1>
+        </div>
       </div>
     </div>
     <div class="col-md-3 content-button_reclamacoes">
@@ -43,13 +56,26 @@
         </div>
       </div>
       <div class="col-md-6">
-        <h4 style="text-align: center;">Todas as Reclamações</h4>
+        <h4 style="text-align: center">Todas as Reclamações</h4>
+        <app-search (emmitSearch)="searchProblemas($event)"></app-search>
         <div
           class="card shadow card__posters text-bg-light"
           *ngFor="let poster of listPosters; let i = index"
         >
           <div class="card-header">
-            <p>{{ poster.titulo }}</p>
+            <div>
+              <p>{{ poster.titulo }}</p>
+            </div>
+            <div *ngIf="poster.isAberto" class="card-posters__aberto">
+              <p>Aberta</p>
+              <i class="fas fa-light fa-bug"></i>
+            </div>
+            <div *ngIf="!poster.isAberto" class="card-posters__fechado">
+              <p>Resolvida <i class="fas fa-light fa-check"></i></p>
+            </div>
+            <div>
+              <p>{{ poster.dataCriacao | dataTransformPipe }}</p>
+            </div>
           </div>
           <div class="card-body">
             <p>{{ poster.descricao }}</p>
@@ -58,28 +84,73 @@
             <div class="row">
               <div class="col-md-4 card-footer__content-col">
                 <button
-                  (click)="comentar(i)"
+                  (click)="habilitarComentar(poster, i)"
                   style="border-radius: 10px"
                   class="btn btn-primary"
                 >
-                  <i  class="fas fa-light fa-comment"></i>
+                  <i class="fas fa-light fa-comment"></i>
                 </button>
               </div>
               <div class="col-md-4 card-footer__content-col">
-                <p style="margin: 0"  class="card-footer__hashtags">{{ poster.hashtags }}</p>
+                <p style="margin: 0" class="card-footer__hashtags">
+                  {{ poster.hashtags }}
+                </p>
               </div>
               <div class="col-md-4 card-footer__content-col">
-                <i (click)="like(poster)" style="cursor: pointer" class="fas fa-solid fa-thumbs-up"></i>
-                {{poster.likes}}
+                <i
+                  (click)="like(poster)"
+                  style="cursor: pointer"
+                  class="fas fa-solid fa-thumbs-up"
+                ></i>
+                {{ poster.likes }}
+              </div>
+            </div>
+            <div *ngIf="poster.isComment" class="row">
+              <div class="card">
+                <div class="card-body">
+                  <div class="row">
+                    <form
+                      [formGroup]="formComentario"
+                      (ngSubmit)="comentar(poster, i)"
+                      class="d-flex"
+                    >
+                      <div class="col-md-10">
+                        <input
+                          formControlName="comentario"
+                          type="text"
+                          class="form-control"
+                          placeholder="adicione um comentário......"
+                        />
+                      </div>
+                      <div class="col-md-2">
+                        <button
+                          type="submit"
+                          [disabled]="!formComentario.valid"
+                          class="btn btn-publicar"
+                        >
+                          Publicar
+                        </button>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="poster.comentarios">
+              <div class="card" *ngFor="let c of poster.comentarios">
+                <div class="card-body">
+                  {{ c.comentario }}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
       <div class="col-md-3">
-        <div class="card shadow card__lateral">
+        <!-- <div class="card shadow card__lateral">
           <h6>Filtrar Problemas</h6>
-        </div>
+        </div> -->
+        <app-filtros-laterais></app-filtros-laterais>
       </div>
     </div>
   </div>
