@@ -22,4 +22,9 @@ export class PosterService {
   updatePoster(poster: IPoster): Observable<IPoster>{
     return this.http.put<IPoster>(Constantes.URL_BASE_POSTERS+ `/${poster.id}`, poster);
   }
+
+  getTotalPosters(): Observable<number>{
+    return this.http.get<number>(Constantes.URL_TOTAL_POSTER);
+  }
+
 }
