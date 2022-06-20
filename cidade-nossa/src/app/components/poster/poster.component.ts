@@ -1,3 +1,4 @@
+import { IPoster } from './../../shared/models/Poster';
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -15,6 +16,7 @@ export class PosterComponent implements OnInit, OnDestroy {
   formData: any;
   foto!: File;
   subscription!: Subscription;
+  poster!: IPoster;
   constructor(private formBuilder: FormBuilder, private posterService: PosterService, private mensagensService: MensagensService) { }
 
   ngOnInit(): void {
@@ -27,7 +29,7 @@ export class PosterComponent implements OnInit, OnDestroy {
 
   initForm(){
     this.form = this.formBuilder.group({
-      titulo: [null, Validators.required],
+      titulo: ['', Validators.required],
       descricao: [null, Validators.required],
       hashtags: [null],
       // foto: [null],
@@ -52,7 +54,11 @@ export class PosterComponent implements OnInit, OnDestroy {
     this.formData.append('foto', this.foto, this.foto.name);
     this.posterService.post(this.formData).subscribe(res => console.log(res))
   } */
-  this.posterService.post(this.form.value).subscribe(res => {
+
+  this.poster = this.form.value;
+  this.poster.isAberto = true;
+
+  this.posterService.post(this.poster).subscribe(res => {
       this.mensagensService.addMessage("Postagem realizada com Sucesso!");
       this.resetForm();
   });

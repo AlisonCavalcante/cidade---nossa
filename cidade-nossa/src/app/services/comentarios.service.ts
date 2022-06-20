@@ -1,4 +1,4 @@
-import { IComentario } from './../shared/models/Comentario';
+import { IComentario, IComentarioEnvio } from './../shared/models/Comentario';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,7 +15,7 @@ export class ComentariosService {
     return this.http.get<IComentario[]>(Constantes.URL_BASE_COMENTARIOS);
   }
 
-  create(comentario: IComentario): Observable<IComentario>{
+  create(comentario: IComentarioEnvio): Observable<IComentario>{
     return this.http.post<IComentario>(Constantes.URL_BASE_COMENTARIOS, comentario);
   }
 

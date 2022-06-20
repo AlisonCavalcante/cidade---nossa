@@ -11,6 +11,11 @@ import { HomeComponent } from './pages/home/home.component';
 import { PosterComponent } from './components/poster/poster.component';
 import { RelatarProblemaComponent } from './pages/relatar-problema/relatar-problema.component';
 import { MensagensComponent } from './components/mensagens/mensagens.component';
+import { SearchComponent } from './components/search/search.component';
+import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
+import { CampoControlErrorComponent } from './components/campo-control-error/campo-control-error.component';
+import { FiltrosLateraisComponent } from './components/filtros-laterais/filtros-laterais.component';
+import { DataTransformPipePipe } from './shared/pipes/data-transform-pipe.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +25,11 @@ import { MensagensComponent } from './components/mensagens/mensagens.component';
     PosterComponent,
     RelatarProblemaComponent,
     MensagensComponent,
+    SearchComponent,
+    ProgressBarComponent,
+    CampoControlErrorComponent,
+    FiltrosLateraisComponent,
+    DataTransformPipePipe,
   ],
   imports: [
     BrowserModule,

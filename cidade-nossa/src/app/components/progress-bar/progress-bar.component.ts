@@ -21,7 +21,6 @@ export class ProgressBarComponent implements OnInit, OnChanges {
 ;  }
 
   getProgress(){
-    console.log(this.totalProblemasCriados)
     this.progresso = ((this.totalProblemasResolvidos / this.totalProblemasCriados)*100).toString();
   }
 

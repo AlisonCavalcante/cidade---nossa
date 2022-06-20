@@ -12,6 +12,7 @@
                 type="text"
                 class="form-control"
               />
+              <app-campo-control-error *ngIf="form.get('titulo')?.errors?.['required'] && form.get('titulo')?.touched" mensagem="Título Obrigatório" ></app-campo-control-error>
             </div>
           </div>
           <div class="row">
@@ -22,6 +23,7 @@
                 type="text"
                 class="form-control"
               ></textarea>
+              <app-campo-control-error *ngIf="form.get('descricao')?.errors?.['required'] && form.get('descricao')?.touched" mensagem="A descrição é Obrigatória" ></app-campo-control-error>
             </div>
           </div>
           <div class="row">
