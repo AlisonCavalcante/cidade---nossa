@@ -1,0 +1,11 @@
+.card{
+  padding: 20px;
+}
+.lista-filtros{
+  border-bottom: 1px solid grey;
+  padding: 10px;
+}
+ul{
+  list-style: none;
+  padding: 0;
+}
