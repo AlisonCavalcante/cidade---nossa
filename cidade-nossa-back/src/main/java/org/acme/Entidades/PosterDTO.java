@@ -5,4 +5,5 @@ public class PosterDTO {
     public String descricao;
     public String hashtags;
     public int likes;
+    public boolean isAberto;
 }

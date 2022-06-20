@@ -38,6 +38,7 @@ public class PosterResource {
         p.descricao = dto.descricao;
         p.hashtags = dto.hashtags;
         p.likes = 0;
+        p.isAberto = dto.isAberto;
         p.persist();
     }
 
@@ -53,6 +54,7 @@ public class PosterResource {
             poster.descricao = dto.descricao;
             poster.hashtags = dto.hashtags;
             poster.likes = dto.likes;
+            poster.isAberto = dto.isAberto;
             poster.persist();
         } else {
             throw new NotFoundException();
