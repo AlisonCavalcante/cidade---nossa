@@ -15,8 +15,8 @@ export class ComentariosService {
     return this.http.get<IComentario[]>(Constantes.URL_BASE_COMENTARIOS);
   }
 
-  create(comentario: IComentario): Observable<any>{
-    return this.http.post<any>(Constantes.URL_BASE_COMENTARIOS, comentario);
+  create(comentario: IComentario): Observable<IComentario>{
+    return this.http.post<IComentario>(Constantes.URL_BASE_COMENTARIOS, comentario);
   }
 
 }
