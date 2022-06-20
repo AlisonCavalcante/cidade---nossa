@@ -1,0 +1,14 @@
+<div>
+  <div class="content-button">
+    <i  (click)="ocultar()" [ngClass]="{'fas fa-solid fa-eye-slash': !isVisible, 'fas fa-regular fa-eye': isVisible}"></i>
+  </div>
+  <div class="row" *ngIf="isVisible">
+    <div class="card" *ngFor="let c of comentarios | slice: 0:4">
+      <div class="card-body">
+        {{ c.comentario }}
+        <!-- <i style="font-size: 2rem; color: yellow;" (click)="favoritarComentario()" [ngClass]="{'fas fa-regular fa-heart ': !meuFavorito, 'fas fa-solid fa-heart': meuFavorito }"></i> -->
+      </div>
+    </div>
+  </div>
+</div>
+

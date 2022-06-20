@@ -1,0 +1,11 @@
+.card{
+  margin: 5px 0;
+}
+.content-button{
+  display: flex;
+  justify-content: end;
+}
+
+.content-button i{
+  cursor: pointer;
+}
