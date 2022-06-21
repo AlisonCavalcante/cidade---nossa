@@ -1,12 +1,16 @@
 package org.acme.EndPointResouces;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
+import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
@@ -29,6 +33,16 @@ public class ComentarioResource {
       return comentario;
     }
 
+    @DELETE
+    @Path("{id}")
+    @Transactional
+    public void deleteComentario(@PathParam("id") Long id){
+      Optional<Comentario> comentOp = Comentario.findByIdOptional(id);
+
+      comentOp.ifPresentOrElse(Comentario::delete, () -> {
+          throw new NotFoundException();
+      });
+    } 
 
 }
 

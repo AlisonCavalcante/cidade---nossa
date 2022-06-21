@@ -19,4 +19,8 @@ export class ComentariosService {
     return this.http.post<IComentario>(Constantes.URL_BASE_COMENTARIOS, comentario);
   }
 
+  delete(id: number | undefined): Observable<any>{
+   return this.http.delete<any>(Constantes.URL_BASE_COMENTARIOS + `/${id}`)
+  }
+
 }
