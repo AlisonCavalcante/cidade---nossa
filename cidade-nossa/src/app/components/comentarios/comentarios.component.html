@@ -3,9 +3,18 @@
     <i  (click)="ocultar()" [ngClass]="{'fas fa-solid fa-eye-slash': !isVisible, 'fas fa-regular fa-eye': isVisible}"></i>
   </div>
   <div class="row" *ngIf="isVisible">
-    <div class="card" *ngFor="let c of comentarios | slice: 0:4">
+    <h6 *ngIf="comentarios" class="title">Comentários</h6>
+    <div class="card" *ngFor="let c of comentarios | slice: 0:4; let i = index ">
       <div class="card-body">
-        {{ c.comentario }}
+        <div class="row">
+          <div class="col">
+            {{ c.comentario }}
+          </div>
+          <div class="col content-button">
+            <button (click)="delete(c, i)" class="btn"><i class="fas fa-solid fa-trash"></i></button>
+          </div>
+        </div>
+
         <!-- <i style="font-size: 2rem; color: yellow;" (click)="favoritarComentario()" [ngClass]="{'fas fa-regular fa-heart ': !meuFavorito, 'fas fa-solid fa-heart': meuFavorito }"></i> -->
       </div>
     </div>

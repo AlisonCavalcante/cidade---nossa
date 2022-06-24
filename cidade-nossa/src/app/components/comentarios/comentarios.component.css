@@ -1,11 +1,14 @@
 .card{
   margin: 5px 0;
+  border-radius: 20px;
 }
 .content-button{
   display: flex;
   justify-content: end;
 }
-
+.title{
+  text-align: center;
+}
 .content-button i{
   cursor: pointer;
 }
