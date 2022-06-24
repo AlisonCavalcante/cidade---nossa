@@ -1,0 +1,22 @@
+main{
+  background-color: rgb(245 242 242);
+}
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.title{
+  text-align: center;
+}
+.row-card{
+  justify-content: center;
+}
+.card{
+  width: 500px;
+}
+
+.form-cadastro{
+  padding: 15px;
+}

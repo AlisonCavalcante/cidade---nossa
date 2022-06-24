@@ -1,26 +1,27 @@
-<!-- <app-header></app-header> -->
 <main>
   <div class="container my-4">
     <div class="row content-title"><h2>É excelente ter você aqui! :)</h2></div>
     <div class="row content-subtitle"><p>Insira seu login e senha para acessar a sua conta.</p></div>
     <div class="row row-card">
       <div class="card shadow">
-        <div>
-          <button class="btn btn-primary"><i class="fas fab fa-facebook-f"></i> Fazer Login com o Facebook</button>
-        </div>
-        <div class="divider"><span>Ou</span></div>
-        <div class="row content-form">
-          <label for="">Login</label>
-          <input type="text" placeholder="Insira seu e-mail...." class="form-control">
-        </div>
-        <div class="row content-form">
-          <label for="">Senha</label>
-          <input type="password" placeholder="Insira sua senha" class="form-control">
-          <a class="esqueci-senha">Esqueci minha senha</a>
-        </div>
-        <div>
-          <button class="btn btn-primary">Entrar</button>
-        </div>
+        <form>
+          <div>
+            <button class="btn btn-primary"><i class="fas fab fa-facebook-f"></i> Fazer Login com o Facebook</button>
+          </div>
+          <div class="divider"><span>Ou</span></div>
+          <div class="row content-form">
+            <label for="">Login</label>
+            <input type="text" formControlName="login" placeholder="Insira seu e-mail...." class="form-control">
+          </div>
+          <div class="row content-form">
+            <label for="">Senha</label>
+            <input type="password" formControlName="senha" placeholder="Insira sua senha" class="form-control">
+            <a routerLink="/login/cadastro" routerLinkActive="router-link-active"  class="esqueci-senha">Esqueci minha senha</a>
+          </div>
+          <div>
+            <button [disabled]="" class="btn btn-primary">Entrar</button>
+          </div>
+        </form>
       </div>
     </div>
     <div class="row row-cadastrar">

@@ -1,1 +1,29 @@
-<p>cadastro works!</p>
+<main>
+  <div class="container">
+    <div class="row row-card">
+      <h3 class="title" >Olá, crie sua conta no cidade é nossa!</h3>
+      <div class="card shadow">
+        <div>
+          <form class="form-cadastro" [formGroup]="formCadastro">
+            <div class="row">
+              <label>Nome:</label>
+              <input formControlName="nome" type="text" class="form-control">
+            </div>
+            <div class="row">
+              <label>Login:</label>
+              <input formControlName="login" type="text" class="form-control"  placeholder="exmaple@gmail.com">
+            </div>
+            <div class="row">
+              <label>Senha:</label>
+              <input formControlName="senha" type="password" class="form-control">
+            </div>
+            <div class="row">
+              <button [disabled]="!formCadastro.valid" class="btn btn-primary">Cadastrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
