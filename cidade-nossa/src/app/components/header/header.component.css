@@ -7,3 +7,6 @@
     color: black;
     font-weight: bold;
 }
+.container-fluid{
+  justify-content: space-between;
+}
