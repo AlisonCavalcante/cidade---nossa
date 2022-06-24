@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row content-titles">
+    <h4>Esqueceu sua senha?</h4>
+    <p>Para localizar seu cadastro informe seu e-mail.</p>
+  </div>
+  <div class="row">
+    <form [formGroup]="formRecuperarSenha">
+      <label>E-mail:</label>
+      <input formControlName="email" type="text" class="form-control">
+      <button [disabled]="!formRecuperarSenha.valid" class="btn my-3 btn-primary">Recuperar</button>
+    </form>
+  </div>
+</div>
