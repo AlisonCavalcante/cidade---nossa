@@ -33,7 +33,9 @@
                 type="text"
                 class="form-control"
                 placeholder="hashtags"
+                maxlength="40"
               />
+              <app-campo-control-error *ngIf="form.get('hashtags')?.errors?.['required'] && form.get('hashtags')?.touched" mensagem="A Hashtag é Obrigatória" ></app-campo-control-error>
             </div>
             <div class="col-md-6">
               <input

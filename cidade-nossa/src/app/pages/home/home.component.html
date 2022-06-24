@@ -1,4 +1,3 @@
-<app-header></app-header>
 <div class="container my-3">
   <div class="row">
     <h4 style="text-align: center">Percentual de Problemas resolvidos</h4>
@@ -59,26 +58,27 @@
         <h4 style="text-align: center">Todas as Reclamações</h4>
         <app-search (emmitSearch)="searchProblemas($event)"></app-search>
         <div
-          class="card shadow card__posters text-bg-light"
+          class="card  card__posters text-bg-light"
           *ngFor="let poster of listPosters; let i = index"
         >
           <div class="card-header">
-            <div>
-              <p>{{ poster.titulo }}</p>
-            </div>
             <div *ngIf="poster.isAberto" class="card-posters__aberto">
-              <p>Aberta</p>
+              <p>Aberto</p>
               <i class="fas fa-light fa-bug"></i>
             </div>
             <div *ngIf="!poster.isAberto" class="card-posters__fechado">
               <p>Resolvida <i class="fas fa-light fa-check"></i></p>
             </div>
             <div>
+              <p>{{ poster.titulo }}</p>
+            </div>
+            <div>
               <p>{{ poster.dataCriacao | dataTransformPipe }}</p>
             </div>
           </div>
-          <div class="card-body">
+          <div class="card-body card-body__descricao d-flex">
             <p>{{ poster.descricao }}</p>
+            <p class="hashtags">{{poster.hashtags | hashtags}}</p>
           </div>
           <div class="card-footer">
             <div class="row">
@@ -86,15 +86,15 @@
                 <button
                   (click)="habilitarComentar(poster, i)"
                   style="border-radius: 10px"
-                  class="btn btn-primary"
+                  class="btn"
                 >
-                  <i class="fas fa-light fa-comment"></i>
+                  <i style="font-size: 20px" class="fas fa-light fa-comment"></i>
                 </button>
               </div>
               <div class="col-md-4 card-footer__content-col">
-                <p style="margin: 0" class="card-footer__hashtags">
-                  {{ poster.hashtags }}
-                </p>
+                <!-- <p style="margin: 0" class="card-footer__hashtags">
+                  {{ poster.hashtags | hashtags }}
+                </p> -->
               </div>
               <div class="col-md-4 card-footer__content-col">
                 <i
@@ -136,20 +136,11 @@
                 </div>
               </div>
             </div>
-            <div class="row" *ngIf="poster.comentarios">
-              <div class="card" *ngFor="let c of poster.comentarios">
-                <div class="card-body">
-                  {{ c.comentario }}
-                </div>
-              </div>
-            </div>
+            <app-comentarios [comentarios]="poster.comentarios"></app-comentarios>
           </div>
         </div>
       </div>
       <div class="col-md-3">
-        <!-- <div class="card shadow card__lateral">
-          <h6>Filtrar Problemas</h6>
-        </div> -->
         <app-filtros-laterais></app-filtros-laterais>
       </div>
     </div>

@@ -8,6 +8,16 @@
   align-content: center;
 
 }
+.card__posters .card-body__descricao{
+  min-height: 150px;
+}
+.card__posters .card-footer .card{
+  margin-bottom: 10px;
+}
+
+.card-footer form{
+  padding: 0;
+}
 
 .card-posters__aberto, .card-posters__fechado{
   background-color: rgb(241, 110, 110);
@@ -32,7 +42,6 @@
 .card-posters__fechado{
   background-color: greenyellow;
 }
-.card-posters__aberto
 
 .card__lateral{
   padding: 5%;
@@ -47,6 +56,13 @@
 
 .card__problemas-resolvidos .card-body{
   color: greenyellow;
+}
+
+.hashtags{
+  color: rgb(50 144 255);
+}
+i{
+  font-size: 20px;
 }
 .row-statistics{
   padding: 5%;
@@ -77,4 +93,11 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+
+@media (max-width: 768px){
+  .row-statistics .card{
+    margin: 10px auto;
+  }
 }

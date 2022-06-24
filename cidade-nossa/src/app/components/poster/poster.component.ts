@@ -31,7 +31,7 @@ export class PosterComponent implements OnInit, OnDestroy {
     this.form = this.formBuilder.group({
       titulo: ['', Validators.required],
       descricao: [null, Validators.required],
-      hashtags: [null],
+      hashtags: [null, Validators.required],
       // foto: [null],
     })
   }

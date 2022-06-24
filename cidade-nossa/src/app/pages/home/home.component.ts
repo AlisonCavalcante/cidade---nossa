@@ -1,5 +1,8 @@
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IComentario, IComentarioEnvio } from './../../shared/models/Comentario';
+import {
+  IComentario,
+  IComentarioEnvio,
+} from './../../shared/models/Comentario';
 import { ComentariosService } from './../../services/comentarios.service';
 import { IPoster } from './../../shared/models/Poster';
 import { PosterService } from './../../services/poster.service';
@@ -21,6 +24,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   coment!: IComentarioEnvio;
   subscription!: Subscription;
   formComentario!: FormGroup;
+  meuFavorito: boolean = false;
 
   constructor(
     private posterService: PosterService,
@@ -35,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
       this.listPosters = res;
       this.setlistPosters = res;
       for (let i = 0; i < this.listPosters.length; i++) {
-        this.listPosters[i].comentarios = []
+        this.listPosters[i].comentarios = [];
         if (this.listPosters[i].isAberto == false) {
           this.totalPostersResolvidos += 1;
         }
@@ -64,7 +68,7 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   habilitarComentar(poster: IPoster, index: number) {
-    this.listPosters[index].isComment = true;
+    this.listPosters[index].isComment = !this.listPosters[index].isComment;
   }
 
   // Método para formatar a data
@@ -76,17 +80,19 @@ export class HomeComponent implements OnInit, OnDestroy {
     return dataFormatada;
   }
 */
+
+
   comentar(poster: IPoster, index: number) {
     this.listPosters[index].isComment = false;
     this.coment = this.formComentario.value;
     this.coment.poster = poster;
     // delete this.coment.poster.dataCriacao; //deleta uma chave de um objeto, somente se ele tiver a possibilidade de ser undefined
-    console.log(this.coment)
+    console.log(this.coment);
     this.comentariosService.create(this.coment).subscribe((res) => {
       this.resetForm();
-        if (this.listPosters[index].comentarios) {
-          this.listPosters[index].comentarios?.push(res);
-        }
+      if (this.listPosters[index].comentarios) {
+        this.listPosters[index].comentarios?.unshift(res);
+      }
     });
   }
 
@@ -95,6 +101,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.posterService
       .updatePoster(poster)
       .subscribe((res) => console.log(res));
+  }
+
+  favoritarComentario() {
+    this.meuFavorito = !this.meuFavorito;
   }
 
   organizarComentarios() {
