@@ -1,24 +1,44 @@
 <main>
   <div class="container">
     <div class="row row-card">
-      <h3 class="title" >Olá, crie sua conta no cidade é nossa!</h3>
+      <h3 class="title">Olá, crie sua conta no cidade é nossa!</h3>
       <div class="card shadow">
         <div>
-          <form class="form-cadastro" [formGroup]="formCadastro">
+          <form class="form-cadastro" (ngSubmit)="submit()" [formGroup]="formCadastro">
             <div class="row">
-              <label>Nome:</label>
-              <input formControlName="nome" type="text" class="form-control">
+              <label>Username:</label>
+              <input formControlName="nome" type="text" class="form-control" />
             </div>
             <div class="row">
               <label>Login:</label>
-              <input formControlName="login" type="text" class="form-control"  placeholder="exmaple@gmail.com">
+              <input
+                formControlName="email"
+                type="text"
+                class="form-control"
+                placeholder="exmaple@gmail.com"
+              />
             </div>
             <div class="row">
               <label>Senha:</label>
-              <input formControlName="senha" type="password" class="form-control">
+              <input
+                formControlName="senha"
+                type="password"
+                class="form-control"
+              />
             </div>
             <div class="row">
-              <button [disabled]="!formCadastro.valid" class="btn btn-primary">Cadastrar</button>
+              <div class="col-md-6 my-1 content-button">
+                <button
+                  [disabled]="!formCadastro.valid"
+                  class="btn btn-primary"
+                  type="submit"
+                >
+                  Cadastrar
+                </button>
+              </div>
+              <div class="col-md-6 my-1 content-button">
+                <button routerLink="/login" class="btn btn-primary">Voltar</button>
+              </div>
             </div>
           </form>
         </div>
@@ -26,4 +46,3 @@
     </div>
   </div>
 </main>
-

@@ -1,0 +1,17 @@
+import { Constantes } from './../shared/Constantes';
+import { Observable } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { Usuario } from '../shared/models/Usuario';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UsuarioService {
+
+  constructor(private http: HttpClient) { }
+
+  createUser(usuario: Usuario): Observable<Usuario>{
+    return this.http.post<Usuario>(Constantes.URL_BASE_USUARIOS, usuario);
+  }
+}

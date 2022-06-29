@@ -1,5 +1,6 @@
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-cadastro',
@@ -9,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 export class CadastroComponent implements OnInit {
 
   formCadastro!: FormGroup
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -18,9 +19,12 @@ export class CadastroComponent implements OnInit {
   initForm(){
     this.formCadastro = this.formBuilder.group({
       nome: ['', Validators.required],
-      login: ['', Validators.required],
-      senha: ['', Validators.required]
+      email: ['', [Validators.required, Validators.email]],
+      senha: ['', [Validators.required, Validators.minLength(6)]]
     })
   }
 
+  submit(){
+    this.usuarioService.createUser(this.formCadastro.value).subscribe(res => console.log(res))
+  }
 }

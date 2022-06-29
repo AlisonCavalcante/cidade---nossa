@@ -3,15 +3,20 @@ main{
 }
 .container{
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
+
 .title{
   text-align: center;
 }
 .row-card{
   justify-content: center;
+}
+.row, label{
+  margin-bottom: 10px;
 }
 .card{
   width: 500px;
@@ -19,4 +24,18 @@ main{
 
 .form-cadastro{
   padding: 15px;
+}
+.content-button{
+  display: flex;
+  justify-content: center;
+}
+
+.btn{
+  width: 100px;
+}
+
+@media (max-width:767px){
+  .btn{
+    width: 100%;
+  }
 }
