@@ -1,3 +1,4 @@
+import { MensagensService } from 'src/app/services/mensagens.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -10,7 +11,7 @@ import { UsuarioService } from 'src/app/services/usuario.service';
 export class CadastroComponent implements OnInit {
 
   formCadastro!: FormGroup
-  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService) { }
+  constructor(private formBuilder: FormBuilder, private mensagensService: MensagensService ,private usuarioService: UsuarioService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -24,7 +25,18 @@ export class CadastroComponent implements OnInit {
     })
   }
 
-  submit(){
-    this.usuarioService.createUser(this.formCadastro.value).subscribe(res => console.log(res))
+  resetForm(){
+    this.formCadastro.reset();
   }
+
+  submit(){
+    this.usuarioService.createUser(this.formCadastro.value).subscribe(res => {
+      if(res != undefined){
+        this.mensagensService.addMessage("Usuário criado com sucesso!")
+        this.resetForm();
+      }
+    })
+  }
+
+
 }
