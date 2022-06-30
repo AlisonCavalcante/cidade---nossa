@@ -4,6 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MensagensService } from 'src/app/services/mensagens.service';
 import { PosterService } from 'src/app/services/poster.service';
+import { UsuarioService } from 'src/app/services/usuario.service';
 
 @Component({
   selector: 'app-poster',
@@ -17,7 +18,7 @@ export class PosterComponent implements OnInit, OnDestroy {
   foto!: File;
   subscription!: Subscription;
   poster!: IPoster;
-  constructor(private formBuilder: FormBuilder, private posterService: PosterService, private mensagensService: MensagensService) { }
+  constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService , private posterService: PosterService, private mensagensService: MensagensService) { }
 
   ngOnInit(): void {
     this.initForm();
@@ -56,6 +57,7 @@ export class PosterComponent implements OnInit, OnDestroy {
   } */
 
   this.poster = this.form.value;
+  this.poster.usuario = this.usuarioService.getUsuario();
   this.poster.isAberto = true;
 
   this.posterService.post(this.poster).subscribe(res => {

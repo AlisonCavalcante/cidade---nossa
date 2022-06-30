@@ -7,12 +7,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { CadastroComponent } from './cadastro/cadastro.component';
 import { RecuperarSenhaComponent } from './recuperar-senha/recuperar-senha.component';
 import { SharedModule } from '../shared/shared.module';
+import { LoginComponent } from './login.component';
 
 
 @NgModule({
   declarations: [
+    LoginComponent,
     CadastroComponent,
-    RecuperarSenhaComponent,
+    RecuperarSenhaComponent
   ],
   imports: [
     CommonModule,

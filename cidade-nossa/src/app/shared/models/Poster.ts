@@ -1,3 +1,4 @@
+import { Usuario } from './Usuario';
 import { IComentario } from './Comentario';
 
 export interface IPoster{
@@ -7,6 +8,7 @@ export interface IPoster{
   dataCriacao: string;
   hashtags: string;
   likes: number;
+  usuario: Usuario;
   comentarios?: IComentario[];
   isComment?: boolean;
   isAberto?: boolean;

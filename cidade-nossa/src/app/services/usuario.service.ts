@@ -9,6 +9,7 @@ import { Usuario } from '../shared/models/Usuario';
 })
 export class UsuarioService {
 
+  private usuario!: Usuario;
   constructor(private http: HttpClient) { }
 
   createUser(usuario: Usuario): Observable<Usuario>{
@@ -16,9 +17,18 @@ export class UsuarioService {
   }
 
   getUserByEmailESenha(login: string, senha: string): Observable<Usuario>{
-    return this.http.get<Usuario>(Constantes.URL_BASE_USUARIOS + `login?email=${login}&senha=${senha}`)
+    return this.http.get<Usuario>(Constantes.URL_BASE_USUARIOS + `/login?email=${login}&senha=${senha}`)
   }
   getUserByEmail(login: string): Observable<Usuario>{
     return this.http.get<Usuario>(Constantes.URL_BASE_USUARIOS + `/auth?email=${login}`)
+  }
+
+  getUsuario(){
+    return this.usuario;
+  }
+
+  setUsuario(usuario: Usuario){
+    console.log(usuario)
+    this.usuario = usuario;
   }
 }
