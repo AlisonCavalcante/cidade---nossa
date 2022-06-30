@@ -14,6 +14,12 @@ public class UsuarioDao {
     private EntityManager entityManager;
 
     public Usuario findByEmail(String email) {
-        return entityManager.createQuery("SELECT u FROM Usuario u WHERE u.email = :email  ", Usuario.class).setParameter("email", email).getSingleResult();
+       Usuario user = entityManager.createQuery("SELECT u FROM Usuario u WHERE u.email = :email  ", Usuario.class).setParameter("email", email).getSingleResult();
+       System.out.println(user);
+       return user;
+    }
+
+    public List<Usuario> findAllUsuarios(){
+        return Usuario.listAll();
     }
 }

@@ -11,6 +11,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import org.acme.DAO.UsuarioDao;
 import org.acme.Entidades.Usuario;
@@ -21,8 +22,15 @@ public class UsuarioResouce {
     
 
     @Inject
-    private UsuarioDao usarioDao;
+    private UsuarioDao usuarioDao;
     
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Usuario> allUsuarios(){
+      return usuarioDao.findAllUsuarios();
+    }
+
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/login")
@@ -33,7 +41,12 @@ public class UsuarioResouce {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/auth")
     public Usuario userByEmail(@QueryParam("email") String email) {
-       return usarioDao.findByEmail(email);
+      Usuario user = usuarioDao.findByEmail(email);
+      System.out.println(user);
+      if(user != null){
+        return user;
+      }
+       return  user;   
     }
 
 
