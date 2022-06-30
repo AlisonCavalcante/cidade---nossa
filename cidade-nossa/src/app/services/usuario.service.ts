@@ -18,4 +18,7 @@ export class UsuarioService {
   getUserByEmailESenha(login: string, senha: string): Observable<Usuario>{
     return this.http.get<Usuario>(Constantes.URL_BASE_USUARIOS + `login?email=${login}&senha=${senha}`)
   }
+  getUserByEmail(login: string): Observable<Usuario>{
+    return this.http.get<Usuario>(Constantes.URL_BASE_USUARIOS + `/auth?email=${login}`)
+  }
 }

@@ -41,12 +41,7 @@ public class UsuarioResouce {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/auth")
     public Usuario userByEmail(@QueryParam("email") String email) {
-      Usuario user = usuarioDao.findByEmail(email);
-      System.out.println(user);
-      if(user != null){
-        return user;
-      }
-       return  user;   
+      return usuarioDao.findByEmail(email);
     }
 
 
