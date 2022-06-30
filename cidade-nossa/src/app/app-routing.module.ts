@@ -2,6 +2,7 @@ import { RelatarProblemaComponent } from './pages/relatar-problema/relatar-probl
 import { HomeComponent } from './pages/home/home.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AuthGuardService } from './shared/guards/auth.guard';
 
 const routes: Routes = [
   // {
@@ -15,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'relatar',
-    component: RelatarProblemaComponent
+    component: RelatarProblemaComponent,
+    canActivate: [AuthGuardService]
   },
   {
     path: 'login',
