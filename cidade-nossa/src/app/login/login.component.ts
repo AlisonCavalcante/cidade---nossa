@@ -1,3 +1,5 @@
+import { UsuarioService } from './../services/usuario.service';
+import { Router } from '@angular/router';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginComponent implements OnInit {
   formLogin!: FormGroup;
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(private usuarioService: UsuarioService, private formBuilder: FormBuilder, private router: Router) {}
 
   ngOnInit(): void {
     this.initForm();
@@ -22,5 +24,8 @@ export class LoginComponent implements OnInit {
   }
   submit(){
 
+  }
+  teste(){
+    this.router.navigate(['login/cadastro']);
   }
 }

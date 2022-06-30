@@ -46,6 +46,7 @@ public class PosterResource {
         p.hashtags = dto.hashtags;
         p.likes = 0;
         p.isAberto = dto.isAberto;
+        p.usuario = dto.usuario;
         p.persist();
     }
 

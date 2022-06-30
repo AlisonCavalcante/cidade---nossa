@@ -14,4 +14,8 @@ export class UsuarioService {
   createUser(usuario: Usuario): Observable<Usuario>{
     return this.http.post<Usuario>(Constantes.URL_BASE_USUARIOS, usuario);
   }
+
+  getUserByEmailESenha(login: string, senha: string): Observable<Usuario>{
+    return this.http.get<Usuario>(Constantes.URL_BASE_USUARIOS + `login?email=${login}&senha=${senha}`)
+  }
 }

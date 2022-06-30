@@ -11,14 +11,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { PosterComponent } from './components/poster/poster.component';
 import { RelatarProblemaComponent } from './pages/relatar-problema/relatar-problema.component';
-import { MensagensComponent } from './components/mensagens/mensagens.component';
 import { SearchComponent } from './components/search/search.component';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
-import { CampoControlErrorComponent } from './components/campo-control-error/campo-control-error.component';
 import { FiltrosLateraisComponent } from './components/filtros-laterais/filtros-laterais.component';
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
 import { HashtagsPipe } from './shared/pipes/hashtags.pipe';
 import { DataTransformPipePipe } from './shared/data-transform-pipe.pipe';
+import { FooterComponent } from './components/footer/footer.component';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -27,14 +27,13 @@ import { DataTransformPipePipe } from './shared/data-transform-pipe.pipe';
     HeaderComponent,
     PosterComponent,
     RelatarProblemaComponent,
-    MensagensComponent,
     SearchComponent,
     ProgressBarComponent,
-    CampoControlErrorComponent,
     FiltrosLateraisComponent,
     DataTransformPipePipe,
     ComentariosComponent,
     HashtagsPipe,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,7 +41,8 @@ import { DataTransformPipePipe } from './shared/data-transform-pipe.pipe';
     HttpClientModule,
     FormsModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

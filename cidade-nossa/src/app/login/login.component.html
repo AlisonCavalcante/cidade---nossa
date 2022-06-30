@@ -4,7 +4,7 @@
     <div class="row content-subtitle"><p>Insira seu login e senha para acessar a sua conta.</p></div>
     <div class="row row-card">
       <div class="card shadow">
-        <form>
+        <form >
           <div>
             <button class="btn btn-primary"><i class="fas fab fa-facebook-f"></i> Fazer Login com o Facebook</button>
           </div>
@@ -16,7 +16,7 @@
           <div class="row content-form">
             <label for="">Senha</label>
             <input type="password" formControlName="senha" placeholder="Insira sua senha" class="form-control">
-            <a routerLink="/login/cadastro" routerLinkActive="router-link-active"  class="esqueci-senha">Esqueci minha senha</a>
+            <a routerLink="/login/cadastro" routerLinkActive="router-link-active"   class="esqueci-senha">Esqueci minha senha</a>
           </div>
           <div>
             <button [disabled]="" class="btn btn-primary">Entrar</button>
@@ -27,7 +27,7 @@
     <div class="row row-cadastrar">
       <div class="content-cadatrar">
         <h5>Não possui uma conta?</h5>
-        <button routerlink="/login/cadastro"  class="btn content-cadastrar___btn">Cadastre-se aqui</button>
+        <button (click)="teste()" class="btn content-cadastrar___btn">Cadastre-se aqui</button>
       </div>
     </div>
   </div>

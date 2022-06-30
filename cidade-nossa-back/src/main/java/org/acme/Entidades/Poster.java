@@ -2,7 +2,7 @@ package org.acme.Entidades;
 import java.util.Date;
 
 import javax.persistence.Entity;
-
+import javax.persistence.ManyToOne;
 
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -20,5 +20,7 @@ public class Poster extends PanacheEntity {
     @CreationTimestamp
     public Date dataCriacao;
 
+    @ManyToOne
+    public Usuario usuario;
 }
 

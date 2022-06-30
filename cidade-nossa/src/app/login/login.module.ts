@@ -5,18 +5,22 @@ import { LoginRoutingModule } from './login-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
 import { CadastroComponent } from './cadastro/cadastro.component';
+import { RecuperarSenhaComponent } from './recuperar-senha/recuperar-senha.component';
+import { SharedModule } from '../shared/shared.module';
 
 
 @NgModule({
   declarations: [
-    CadastroComponent
+    CadastroComponent,
+    RecuperarSenhaComponent,
   ],
   imports: [
     CommonModule,
     LoginRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    SharedModule
   ]
 })
 export class LoginModule { }
