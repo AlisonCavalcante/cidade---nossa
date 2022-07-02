@@ -7,6 +7,8 @@ import {
   OnInit,
   OnChanges,
   SimpleChanges,
+  ViewChild,
+  ElementRef,
 } from '@angular/core';
 import { ComentariosService } from 'src/app/services/comentarios.service';
 
@@ -19,6 +21,7 @@ export class ComentariosComponent implements OnInit, OnChanges {
   @Input() comentarios!: IComentario[] | undefined;
   isVisible: boolean = true;
   usuarioAtivo!: IUsuario;
+  @ViewChild('comentario') comentario!: ElementRef;
   isEdit: boolean = false;
   constructor(private comentarioService: ComentariosService, private usuarioService: UsuarioService) {}
 
@@ -40,8 +43,12 @@ export class ComentariosComponent implements OnInit, OnChanges {
     }
   }
   edit(comentario: IComentario, index: number){
-
+    console.log(this.comentario.nativeElement)
+    comentario.comentario = this.comentario.nativeElement.value;
+    console.log(comentario)
+    this.comentarioService.edit(comentario.id, comentario).subscribe(res => console.log(res))
   }
+
   delete(comentario: IComentario, index: number) {
     this.comentarioService.delete(comentario.id).subscribe(res => {
       this.comentarios?.splice(index,1)

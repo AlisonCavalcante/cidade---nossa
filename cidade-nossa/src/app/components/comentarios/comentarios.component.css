@@ -19,3 +19,13 @@
   border: none;
   background: white;
 }
+
+.content__user, i{
+  display: flex;
+  margin-right: 5px;
+  align-items: center;
+}
+
+.content__user > .user-name{
+  font-weight: bold;
+}

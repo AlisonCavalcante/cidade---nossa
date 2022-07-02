@@ -8,6 +8,7 @@
       [totalProblemasResolvidos]="totalPostersResolvidos"
     ></app-progress-bar>
   </div>
+  <app-mensagens></app-mensagens>
   <div class="row row-statistics">
     <div class="col-md-3">
       <div class="card shadow card__problemas-total">
@@ -40,7 +41,7 @@
       </div>
     </div>
     <div class="col-md-3 content-button_reclamacoes">
-      <button routerLink="/relatar" class="btn btn-danger">
+      <button (click)="relaterProblema()" class="btn btn-danger">
         <i class="fas fa-light fa-bullhorn"></i> Relatar Problema
       </button>
     </div>
@@ -118,6 +119,7 @@
                 {{ poster.likes }}
               </div>
             </div>
+            <!--Form Comentar-->
             <div *ngIf="poster.isComment && usuarioAtivo !== undefined" class="row">
               <div class="card">
                 <div class="card-body">

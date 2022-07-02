@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { IUsuario } from './../../shared/models/Usuario';
 import { UsuarioService } from 'src/app/services/usuario.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -10,6 +11,7 @@ import { IPoster } from './../../shared/models/Poster';
 import { PosterService } from './../../services/poster.service';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
+import { MensagensService } from 'src/app/services/mensagens.service';
 
 @Component({
   selector: 'app-home',
@@ -29,20 +31,21 @@ export class HomeComponent implements OnInit, OnDestroy {
   meuFavorito: boolean = false;
   usuarioAtivo!: IUsuario;
 
-
   constructor(
     private posterService: PosterService,
     private comentariosService: ComentariosService,
     private formBuilder: FormBuilder,
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    private router: Router,
+    private mensagensService: MensagensService
   ) {}
 
   ngOnInit(): void {
     this.comentarios3 = [];
+    this.usuarioAtivo = this.usuarioService.getUsuario();
     this.initiFormComentario();
     this.subscription = this.posterService.getPosters().subscribe((res) => {
       this.listPosters = res;
-      console.log(this.listPosters)
       this.setlistPosters = res;
       for (let i = 0; i < this.listPosters.length; i++) {
         this.listPosters[i].comentarios = [];
@@ -67,9 +70,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-  deletePoster(poster: IPoster, index: number){
-
-  }
+  deletePoster(poster: IPoster, index: number) {}
 
   initiFormComentario() {
     this.formComentario = this.formBuilder.group({
@@ -78,22 +79,15 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   habilitarComentar(poster: IPoster, index: number) {
-    console.log(this.listPosters[index].isComment)
-    this.listPosters[index].isComment = !this.listPosters[index].isComment;
-    this.usuarioAtivo = this.usuarioService.getUsuario();
-    console.log(this.usuarioAtivo)
+    if (this.usuarioService.getUsuario() == undefined) {
+      this.mensagensService.addMessage(
+        'Precisa-se realizar login para Comentar.'
+      );
+    } else {
+      this.listPosters[index].isComment = !this.listPosters[index].isComment;
+      this.usuarioAtivo = this.usuarioService.getUsuario();
+    }
   }
-
-  // Método para formatar a data
-  /*formatarData(data: string[]): string {
-    let dia = data[2].slice(0, 2);
-    let mes = data[1];
-    let ano = data[0];
-    let dataFormatada = `${dia} -${mes} - ${ano}`;
-    return dataFormatada;
-  }
-*/
-
 
   comentar(poster: IPoster, index: number) {
     this.listPosters[index].isComment = false;
@@ -134,6 +128,16 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   resetForm() {
     this.formComentario.reset();
+  }
+
+  relaterProblema() {
+    if (this.usuarioService.getUsuario() == undefined) {
+      this.mensagensService.addMessage(
+        'Precisa-se realizar login para relatar um problema.'
+      );
+    } else {
+      this.router.navigate(['/relatar']);
+    }
   }
 
   searchProblemas(event: string) {
