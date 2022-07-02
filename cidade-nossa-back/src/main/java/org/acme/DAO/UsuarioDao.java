@@ -7,6 +7,7 @@ import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 
+
 import org.acme.Entidades.Usuario;
 
 @Singleton
