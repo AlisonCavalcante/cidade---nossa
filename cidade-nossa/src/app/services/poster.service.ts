@@ -15,6 +15,14 @@ export class PosterService {
     return this.http.get<IPoster[]>(Constantes.URL_BASE_POSTERS);
   }
 
+  getTotalPosters(): Observable<number>{
+    return this.http.get<number>(Constantes.URL_TOTAL_POSTER);
+  }
+
+  getPosterByCategoria(categoria: string): Observable<IPoster>{
+    return this.http.get<IPoster>(Constantes.URL_POSTERS_BYCATEGORIA + `${categoria}`)
+  }
+
   post(arquivo: IPoster): Observable<IPoster>{
     return this.http.post<IPoster>(Constantes.URL_BASE_POSTERS, arquivo);
   }
@@ -23,8 +31,7 @@ export class PosterService {
     return this.http.put<IPoster>(Constantes.URL_BASE_POSTERS+ `/${poster.id}`, poster);
   }
 
-  getTotalPosters(): Observable<number>{
-    return this.http.get<number>(Constantes.URL_TOTAL_POSTER);
-  }
+
+
 
 }

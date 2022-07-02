@@ -1,23 +1,75 @@
 <div>
   <div class="content-button">
-    <i  (click)="ocultar()" [ngClass]="{'fas fa-solid fa-eye-slash': !isVisible, 'fas fa-regular fa-eye': isVisible}"></i>
+    <i
+      (click)="ocultar()"
+      [ngClass]="{
+        'fas fa-solid fa-eye-slash': !isVisible,
+        'fas fa-regular fa-eye': isVisible
+      }"
+    ></i>
   </div>
   <div class="row" *ngIf="isVisible">
     <h6 *ngIf="comentarios" class="title">Comentários</h6>
-    <div class="card" *ngFor="let c of comentarios | slice: 0:4; let i = index ">
+    <div class="card" *ngFor="let c of comentarios | slice: 0:4; let i = index">
       <div class="card-body">
         <div class="row">
-          <div class="col">
-            {{ c.comentario }}
+          <div class="col-md-9">
+            <input
+              class="card-body__input"
+              [value]="c.comentario"
+              [disabled]="!c.isEdit"
+            />
           </div>
-          <div class="col content-button">
-            <button (click)="delete(c, i)" class="btn"><i class="fas fa-solid fa-trash"></i></button>
+          <div *ngIf="usuarioAtivo" class="col-md-1 content-button">
+            <button
+              *ngIf="usuarioAtivo?.id == c.usuario?.id"
+              class="btn"
+              (click)="onEdit(i)"
+            >
+              <i class="fas fa-edit"></i>
+            </button>
+          </div>
+          <div *ngIf="usuarioAtivo" class="col-md-1 content-button">
+            <button
+              *ngIf="usuarioAtivo?.id == c.usuario?.id"
+              (click)="delete(c, i)"
+              class="btn"
+            >
+              <i class="fas fa-solid fa-trash"></i>
+            </button>
+          </div>
+          <div *ngIf="c.isEdit" class="col-md-1 content-button">
+            <button
+              *ngIf="usuarioAtivo?.id == c.usuario?.id"
+              (click)="edit(c, i)"
+              class="btn"
+            >
+            Editar
+            </button>
           </div>
         </div>
+        <!-- <div class="row">
+          <div class="col-md-1">
+            <i class="fas fal fa-user-circle"></i>
+          </div>
+          <div class="col">
+            <p>
+              <strong> {{ c.usuario?.nome }}</strong> {{ c.comentario }}
+            </p>
+          </div>
+          <div *ngIf="usuarioAtivo" class="col content-button">
+            <button
+              *ngIf="usuarioAtivo?.id == c.usuario?.id"
+              (click)="delete(c, i)"
+              class="btn"
+            >
+              <i class="fas fa-solid fa-trash"></i>
+            </button>
+          </div>
+        </div> -->
 
         <!-- <i style="font-size: 2rem; color: yellow;" (click)="favoritarComentario()" [ngClass]="{'fas fa-regular fa-heart ': !meuFavorito, 'fas fa-solid fa-heart': meuFavorito }"></i> -->
       </div>
     </div>
   </div>
 </div>
-

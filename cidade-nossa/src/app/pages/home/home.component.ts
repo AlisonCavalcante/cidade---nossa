@@ -1,3 +1,5 @@
+import { IUsuario } from './../../shared/models/Usuario';
+import { UsuarioService } from 'src/app/services/usuario.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {
   IComentario,
@@ -25,11 +27,14 @@ export class HomeComponent implements OnInit, OnDestroy {
   subscription!: Subscription;
   formComentario!: FormGroup;
   meuFavorito: boolean = false;
+  usuarioAtivo!: IUsuario;
+
 
   constructor(
     private posterService: PosterService,
     private comentariosService: ComentariosService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private usuarioService: UsuarioService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +42,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.initiFormComentario();
     this.subscription = this.posterService.getPosters().subscribe((res) => {
       this.listPosters = res;
+      console.log(this.listPosters)
       this.setlistPosters = res;
       for (let i = 0; i < this.listPosters.length; i++) {
         this.listPosters[i].comentarios = [];
@@ -61,6 +67,10 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
+  deletePoster(poster: IPoster, index: number){
+
+  }
+
   initiFormComentario() {
     this.formComentario = this.formBuilder.group({
       comentario: [null, Validators.required],
@@ -68,7 +78,10 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   habilitarComentar(poster: IPoster, index: number) {
+    console.log(this.listPosters[index].isComment)
     this.listPosters[index].isComment = !this.listPosters[index].isComment;
+    this.usuarioAtivo = this.usuarioService.getUsuario();
+    console.log(this.usuarioAtivo)
   }
 
   // Método para formatar a data
@@ -86,8 +99,8 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.listPosters[index].isComment = false;
     this.coment = this.formComentario.value;
     this.coment.poster = poster;
+    this.coment.usuario = this.usuarioAtivo;
     // delete this.coment.poster.dataCriacao; //deleta uma chave de um objeto, somente se ele tiver a possibilidade de ser undefined
-    console.log(this.coment);
     this.comentariosService.create(this.coment).subscribe((res) => {
       this.resetForm();
       if (this.listPosters[index].comentarios) {

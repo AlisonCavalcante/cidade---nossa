@@ -27,7 +27,7 @@
             </div>
           </div>
           <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
               <input
                 formControlName="hashtags"
                 type="text"
@@ -37,12 +37,30 @@
               />
               <app-campo-control-error *ngIf="form.get('hashtags')?.errors?.['required'] && form.get('hashtags')?.touched" mensagem="A Hashtag é Obrigatória" ></app-campo-control-error>
             </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
               <input
                 type="file"
                 class="form-control"
                 (change)="inputFileChange($event)"
               />
+            </div>
+            <div class="col-md-4">
+              <select
+              class="btn btn-secondary form-select-lg"
+              aria-label="Default select example"
+              type ="text"
+              id="categorias"
+              formControlName="categoria"
+            >
+              <option
+                style="text-transform: capitalize"
+                selected
+                *ngFor="let categoria of categorias"
+                [ngValue]="categoria"
+              >
+              {{categoria}}
+              </option>
+            </select>
             </div>
           </div>
           <div class="content-button">

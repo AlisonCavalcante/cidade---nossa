@@ -10,6 +10,14 @@
 }
 .card__posters .card-body__descricao{
   min-height: 150px;
+  flex-direction: column;
+}
+.card__posters .card-body__descricao .descricao{
+  display: flex;
+}
+.card__posters .card-body__descricao .title{
+  text-align: center;
+  text-transform: uppercase;
 }
 .card__posters .card-footer .card{
   margin-bottom: 10px;
@@ -82,11 +90,8 @@ i{
   margin-bottom: 20px;
 }
 
-.card__posters .card-header{
-  text-transform: uppercase;
-}
-
-.card__posters .card-header, .card-footer__hashtags, .btn-publicar{
+.btn-publicar{
+  cursor: pointer;
   color:rgb(31, 105, 193);
 }
 .card-footer__content-col{

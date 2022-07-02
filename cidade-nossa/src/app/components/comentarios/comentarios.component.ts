@@ -1,3 +1,5 @@
+import { IUsuario } from './../../shared/models/Usuario';
+import { UsuarioService } from './../../services/usuario.service';
 import { IComentario } from './../../shared/models/Comentario';
 import {
   Component,
@@ -16,18 +18,28 @@ import { ComentariosService } from 'src/app/services/comentarios.service';
 export class ComentariosComponent implements OnInit, OnChanges {
   @Input() comentarios!: IComentario[] | undefined;
   isVisible: boolean = true;
-  constructor(private comentarioService: ComentariosService) {}
+  usuarioAtivo!: IUsuario;
+  isEdit: boolean = false;
+  constructor(private comentarioService: ComentariosService, private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
-
+    this.usuarioAtivo = this.usuarioService.getUsuario();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-
   }
 
   ocultar() {
     this.isVisible = !this.isVisible;
+
+  }
+  onEdit(index: number){
+    this.isEdit = !this.isEdit;
+    if(this.comentarios != undefined){
+      this.comentarios[index].isEdit = !this.comentarios[index].isEdit
+    }
+  }
+  edit(comentario: IComentario, index: number){
 
   }
   delete(comentario: IComentario, index: number) {

@@ -62,6 +62,10 @@
           *ngFor="let poster of listPosters; let i = index"
         >
           <div class="card-header">
+            <div>
+              <i class="fas fal fa-user-circle"></i>
+              {{poster?.usuario?.nome}}
+            </div>
             <div *ngIf="poster.isAberto" class="card-posters__aberto">
               <p>Aberto</p>
               <i class="fas fa-light fa-bug"></i>
@@ -70,15 +74,24 @@
               <p>Resolvida <i class="fas fa-light fa-check"></i></p>
             </div>
             <div>
-              <p>{{ poster.titulo }}</p>
+              <p>{{ poster.dataCriacao | dataTransformPipe }}</p>
             </div>
             <div>
-              <p>{{ poster.dataCriacao | dataTransformPipe }}</p>
+              <button
+              *ngIf="usuarioAtivo?.id == poster.usuario?.id"
+              (click)="deletePoster(poster, i)"
+              class="btn"
+            >
+              <i class="fas fa-solid fa-trash"></i>
+            </button>
             </div>
           </div>
           <div class="card-body card-body__descricao d-flex">
-            <p>{{ poster.descricao }}</p>
-            <p class="hashtags">{{poster.hashtags | hashtags}}</p>
+            <div class="title"><p>{{ poster.titulo }}</p></div>
+            <div class="descricao" >
+              <p>{{ poster.descricao }}</p>
+              <p class="hashtags">{{poster.hashtags | hashtags}}</p>
+            </div>
           </div>
           <div class="card-footer">
             <div class="row">
@@ -105,7 +118,7 @@
                 {{ poster.likes }}
               </div>
             </div>
-            <div *ngIf="poster.isComment" class="row">
+            <div *ngIf="poster.isComment && usuarioAtivo !== undefined" class="row">
               <div class="card">
                 <div class="card-body">
                   <div class="row">

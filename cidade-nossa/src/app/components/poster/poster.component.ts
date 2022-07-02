@@ -18,6 +18,7 @@ export class PosterComponent implements OnInit, OnDestroy {
   foto!: File;
   subscription!: Subscription;
   poster!: IPoster;
+  categorias: string[] = ['Saúde', 'Saneamento', 'Educação']
   constructor(private formBuilder: FormBuilder, private usuarioService: UsuarioService , private posterService: PosterService, private mensagensService: MensagensService) { }
 
   ngOnInit(): void {
@@ -33,6 +34,7 @@ export class PosterComponent implements OnInit, OnDestroy {
       titulo: ['', Validators.required],
       descricao: [null, Validators.required],
       hashtags: [null, Validators.required],
+      categoria: ['Saúde', Validators.required],
       // foto: [null],
     })
   }
@@ -59,8 +61,8 @@ export class PosterComponent implements OnInit, OnDestroy {
   this.poster = this.form.value;
   this.poster.usuario = this.usuarioService.getUsuario();
   this.poster.isAberto = true;
-
-  this.posterService.post(this.poster).subscribe(res => {
+  console.log(this.form.value)
+   this.posterService.post(this.poster).subscribe(res => {
       this.mensagensService.addMessage("Postagem realizada com Sucesso!");
       this.resetForm();
   });
