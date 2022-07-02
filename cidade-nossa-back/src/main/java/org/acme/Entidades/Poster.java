@@ -16,7 +16,8 @@ public class Poster extends PanacheEntity {
     public String hashtags;
     public int likes;
     public boolean isAberto;
-
+    public String categoria;
+    
     @CreationTimestamp
     public Date dataCriacao;
 
