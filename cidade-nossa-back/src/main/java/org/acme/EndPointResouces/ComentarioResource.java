@@ -9,6 +9,7 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.NotFoundException;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -31,6 +32,24 @@ public class ComentarioResource {
     public Comentario create(Comentario comentario){
       comentario.persist();
       return comentario;
+    }
+
+    
+    @PUT
+    @Path("{id}")
+    @Transactional
+    public void atualizarPoster(@PathParam("id") Long id, Comentario comentarioDto) {
+        Optional<Comentario> comentarioOp = Comentario.findByIdOptional(id);
+        // System.out.println(comentarioDto.usuario.email);
+        if (comentarioOp.isPresent()) {
+          Comentario comentario = comentarioOp.get();
+          comentario.comentario = comentarioDto.comentario;
+          comentario.poster = comentarioDto.poster;
+          comentario.usuario = comentarioDto.usuario;
+          comentario.persist();
+        } else {
+            throw new NotFoundException();
+        }
     }
 
     @DELETE
