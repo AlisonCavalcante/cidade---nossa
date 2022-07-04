@@ -9,6 +9,7 @@ export interface IPoster{
   hashtags: string;
   likes: number;
   usuario: IUsuario;
+  categoria: string;
   comentarios?: IComentario[];
   isComment?: boolean;
   isAberto?: boolean;

@@ -1,5 +1,6 @@
 package org.acme.EndPointResouces;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -37,6 +38,13 @@ public class PosterResource {
 
     @GET
     @Produces(MediaType.APPLICATION_JSON)
+    @Path("/id")
+    public Poster findById(@QueryParam("id") Long id){
+        return posterDao.findById(id);
+    }
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
     @Path("/categoria")
     public List<Poster> posterByCategoria(@QueryParam("categoria") String categoria){
         return posterDao.findByCategoria(categoria);
@@ -46,6 +54,12 @@ public class PosterResource {
     @Path("/count")
     public Long count() {
         return Poster.count();
+    }
+
+    @GET
+    @Path("/count/categoria")
+    public Long countByCategoria(@QueryParam("categoria") String categoria) {
+        return posterDao.countByCategoria(categoria);
     }
 
 

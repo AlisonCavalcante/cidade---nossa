@@ -20,6 +20,11 @@ const routes: Routes = [
     canActivate: [AuthGuardService]
   },
   {
+    path: 'relatar/edit/:id',
+    component: RelatarProblemaComponent,
+    canActivate: [AuthGuardService]
+  },
+  {
     path: 'login',
     loadChildren: () =>
       import('./login/login.module').then((l) => l.LoginModule),

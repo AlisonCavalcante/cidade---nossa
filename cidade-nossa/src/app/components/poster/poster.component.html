@@ -64,7 +64,8 @@
             </div>
           </div>
           <div class="content-button">
-            <button type="submit" [disabled]="!form.valid" class="btn btn-success">Postar</button>
+            <button type="submit" *ngIf="!isEdit" [disabled]="!form.valid" class="btn btn-success">Postar</button>
+            <button type="submit" *ngIf="isEdit" [disabled]="!form.valid" class="btn btn-success">Editar</button>
             <button routerLink="/"  class="btn btn-primary">Voltar</button>
           </div>
         </div>

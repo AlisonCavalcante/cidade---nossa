@@ -22,7 +22,6 @@ export class ComentariosComponent implements OnInit, OnChanges {
   isVisible: boolean = true;
   usuarioAtivo!: IUsuario;
   @ViewChild('comentario') comentario!: ElementRef;
-  isEdit: boolean = false;
   constructor(private comentarioService: ComentariosService, private usuarioService: UsuarioService) {}
 
   ngOnInit(): void {
@@ -37,15 +36,12 @@ export class ComentariosComponent implements OnInit, OnChanges {
 
   }
   onEdit(index: number){
-    this.isEdit = !this.isEdit;
     if(this.comentarios != undefined){
       this.comentarios[index].isEdit = !this.comentarios[index].isEdit
     }
   }
   edit(comentario: IComentario, index: number){
-    console.log(this.comentario.nativeElement)
     comentario.comentario = this.comentario.nativeElement.value;
-    console.log(comentario)
     this.comentarioService.edit(comentario.id, comentario).subscribe(res => console.log(res))
   }
 

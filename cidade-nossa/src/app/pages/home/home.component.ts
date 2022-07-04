@@ -24,7 +24,6 @@ export class HomeComponent implements OnInit, OnDestroy {
   totalPostersCriados: number = 0;
   totalPostersResolvidos: number = 0;
   comentarios!: IComentario[];
-  comentarios3!: IComentario[];
   coment!: IComentarioEnvio;
   subscription!: Subscription;
   formComentario!: FormGroup;
@@ -41,24 +40,9 @@ export class HomeComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.comentarios3 = [];
     this.usuarioAtivo = this.usuarioService.getUsuario();
     this.initiFormComentario();
-    this.subscription = this.posterService.getPosters().subscribe((res) => {
-      this.listPosters = res;
-      this.setlistPosters = res;
-      for (let i = 0; i < this.listPosters.length; i++) {
-        this.listPosters[i].comentarios = [];
-        if (this.listPosters[i].isAberto == false) {
-          this.totalPostersResolvidos += 1;
-        }
-      }
-      this.comentariosService.getAll().subscribe((res) => {
-        this.comentarios = res;
-        this.organizarComentarios();
-      });
-    });
-
+    this.getPosters();
     this.getTotalPosters();
   }
 
@@ -68,9 +52,34 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
+  getPosters(){
+    this.subscription = this.posterService.getPosters().subscribe((res) => {
+      this.listPosters = res;
+      this.setlistPosters = res;
+      for (let i = 0; i < this.listPosters.length; i++) {
+        this.listPosters[i].comentarios = [];
+        if (this.listPosters[i].isAberto == false) {
+          this.totalPostersResolvidos += 1;
+        }
+      }
+      this.getComentarios();
+    });
+  }
+
+  getComentarios(){
+    this.comentariosService.getAll().subscribe((res) => {
+      this.comentarios = res;
+      this.organizarComentarios();
+    });
+  }
+
   ngOnDestroy(): void {}
 
   deletePoster(poster: IPoster, index: number) {}
+
+  // editPoster(poster: IPoster){
+  //   this.router.navigate(['/relatar/edit'],  )
+  // }
 
   initiFormComentario() {
     this.formComentario = this.formBuilder.group({
@@ -78,12 +87,18 @@ export class HomeComponent implements OnInit, OnDestroy {
     });
   }
 
-  habilitarComentar(poster: IPoster, index: number) {
+  verificarUsuario(mensagem: string): boolean {
     if (this.usuarioService.getUsuario() == undefined) {
-      this.mensagensService.addMessage(
-        'Precisa-se realizar login para Comentar.'
-      );
-    } else {
+      this.mensagensService.addMessage(mensagem);
+      return true;
+    }
+    return false;
+  }
+
+  habilitarComentar(poster: IPoster, index: number) {
+    if (
+      this.verificarUsuario('Precisa-se realizar login para Comentar.') == false
+    ) {
       this.listPosters[index].isComment = !this.listPosters[index].isComment;
       this.usuarioAtivo = this.usuarioService.getUsuario();
     }
@@ -131,11 +146,11 @@ export class HomeComponent implements OnInit, OnDestroy {
   }
 
   relaterProblema() {
-    if (this.usuarioService.getUsuario() == undefined) {
-      this.mensagensService.addMessage(
+    if (
+      this.verificarUsuario(
         'Precisa-se realizar login para relatar um problema.'
-      );
-    } else {
+      ) == false
+    ) {
       this.router.navigate(['/relatar']);
     }
   }

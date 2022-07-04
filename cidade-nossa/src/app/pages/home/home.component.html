@@ -75,15 +75,15 @@
               <p>Resolvida <i class="fas fa-light fa-check"></i></p>
             </div>
             <div>
-              <p>{{ poster.dataCriacao | dataTransformPipe }}</p>
-            </div>
-            <div>
               <button
               *ngIf="usuarioAtivo?.id == poster.usuario?.id"
               (click)="deletePoster(poster, i)"
               class="btn"
             >
               <i class="fas fa-solid fa-trash"></i>
+            </button>
+            <button [routerLink]="['relatar/edit/', poster.id]" *ngIf="usuarioAtivo?.id == poster.usuario?.id" class="btn">
+              <i class="fas fa-edit"></i>
             </button>
             </div>
           </div>
@@ -92,6 +92,12 @@
             <div class="descricao" >
               <p>{{ poster.descricao }}</p>
               <p class="hashtags">{{poster.hashtags | hashtags}}</p>
+            </div>
+            <div class="data">
+              <div> <i class="fas fa-calendar-alt"></i></div>
+              <div>
+                <p>{{ poster.dataCriacao | dataTransformPipe }}</p>
+              </div>
             </div>
           </div>
           <div class="card-footer">
