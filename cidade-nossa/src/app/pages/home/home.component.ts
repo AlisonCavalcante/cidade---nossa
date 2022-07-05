@@ -75,11 +75,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {}
 
-  deletePoster(poster: IPoster, index: number) {}
+  deletePoster(poster: IPoster, index: number) {
+    if(poster.id)
+    this.posterService.delete(poster.id).subscribe(res => console.log(res))
+  }
 
-  // editPoster(poster: IPoster){
-  //   this.router.navigate(['/relatar/edit'],  )
-  // }
 
   initiFormComentario() {
     this.formComentario = this.formBuilder.group({

@@ -5,36 +5,40 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PosterService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-  getById(id: number): Observable<IPoster>{
-    return this.http.get<IPoster>(Constantes.URL_POSTERS_ID+`${id}`);
+  getById(id: number): Observable<IPoster> {
+    return this.http.get<IPoster>(Constantes.URL_POSTERS_ID + `${id}`);
   }
 
-  getPosters(): Observable<IPoster[]>{
+  getPosters(): Observable<IPoster[]> {
     return this.http.get<IPoster[]>(Constantes.URL_BASE_POSTERS);
   }
-  getTotalPosters(): Observable<number>{
+  getTotalPosters(): Observable<number> {
     return this.http.get<number>(Constantes.URL_TOTAL_POSTER);
   }
 
-  getPosterByCategoria(categoria: string): Observable<IPoster>{
-    return this.http.get<IPoster>(Constantes.URL_POSTERS_BYCATEGORIA + `${categoria}`)
+  getPosterByCategoria(categoria: string): Observable<IPoster> {
+    return this.http.get<IPoster>(
+      Constantes.URL_POSTERS_BYCATEGORIA + `${categoria}`
+    );
   }
 
-  post(arquivo: IPoster): Observable<IPoster>{
+  post(arquivo: IPoster): Observable<IPoster> {
     return this.http.post<IPoster>(Constantes.URL_BASE_POSTERS, arquivo);
   }
 
-  updatePoster(poster: IPoster): Observable<IPoster>{
-    return this.http.put<IPoster>(Constantes.URL_BASE_POSTERS+ `/${poster.id}`, poster);
+  updatePoster(poster: IPoster): Observable<IPoster> {
+    return this.http.put<IPoster>(
+      Constantes.URL_BASE_POSTERS + `/${poster.id}`,
+      poster
+    );
   }
 
-
-
-
+  delete(id: number): Observable<any> {
+    return this.http.delete<any>(Constantes.URL_BASE_POSTERS + `/${id}`);
+  }
 }
