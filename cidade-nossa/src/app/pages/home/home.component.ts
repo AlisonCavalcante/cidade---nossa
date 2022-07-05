@@ -77,7 +77,11 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   deletePoster(poster: IPoster, index: number) {
     if(poster.id)
-    this.posterService.delete(poster.id).subscribe(res => console.log(res))
+    this.posterService.delete(poster.id).subscribe(res => {
+      if(res == null){
+        this.listPosters.splice(index,1);
+      }
+    })
   }
 
 

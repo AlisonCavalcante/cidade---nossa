@@ -16,7 +16,7 @@ import { ProgressBarComponent } from './components/progress-bar/progress-bar.com
 import { FiltrosLateraisComponent } from './components/filtros-laterais/filtros-laterais.component';
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
 import { HashtagsPipe } from './shared/pipes/hashtags.pipe';
-import { DataTransformPipePipe } from './shared/data-transform-pipe.pipe';
+import { DataTransformPipePipe } from './shared/pipes/data-transform-pipe.pipe';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
