@@ -90,8 +90,7 @@
           <div class="card-body card-body__descricao d-flex">
             <div class="title"><p>{{ poster.titulo }}</p></div>
             <div class="descricao" >
-              <p>{{ poster.descricao }}</p>
-              <p class="hashtags">{{poster.hashtags | hashtags}}</p>
+              <p>{{ poster.descricao }} <strong  class="hashtags">{{poster.hashtags | hashtags}}</strong> </p>
             </div>
             <div class="data">
               <div> <i class="fas fa-calendar-alt"></i></div>
@@ -101,22 +100,17 @@
             </div>
           </div>
           <div class="card-footer">
-            <div class="row">
-              <div class="col-md-4 card-footer__content-col">
+            <div style="display: flex">
+              <div class="card-footer__content-col">
                 <button
                   (click)="habilitarComentar(poster, i)"
-                  style="border-radius: 10px"
+                  style="border-radius: 10px; margin-top: 5px;"
                   class="btn"
                 >
                   <i style="font-size: 20px" class="fas fa-light fa-comment"></i>
                 </button>
               </div>
-              <div class="col-md-4 card-footer__content-col">
-                <!-- <p style="margin: 0" class="card-footer__hashtags">
-                  {{ poster.hashtags | hashtags }}
-                </p> -->
-              </div>
-              <div class="col-md-4 card-footer__content-col">
+              <div class="card-footer__content-col">
                 <i
                   (click)="like(poster)"
                   style="cursor: pointer"
@@ -139,7 +133,7 @@
                         <input
                           formControlName="comentario"
                           type="text"
-                          class="form-control"
+                          class="form-control comentar_input"
                           placeholder="adicione um comentário......"
                         />
                       </div>

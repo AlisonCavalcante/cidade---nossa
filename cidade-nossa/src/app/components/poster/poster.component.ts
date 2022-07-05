@@ -77,16 +77,16 @@ export class PosterComponent implements OnInit, OnDestroy, OnChanges {
     this.form.reset();
   }
 
-  preencherPoster(poster: IPoster) {
+  preencherPoster() {
     if (this.isEdit) {
       this.posterEdit.titulo = this.form.get('titulo')?.value;
       this.posterEdit.descricao = this.form.get('descricao')?.value;
       this.posterEdit.hashtags = this.form.get('hashtags')?.value;
       this.posterEdit.categoria = this.form.get('categoria')?.value;
     } else {
-      poster = this.form.value;
-      poster.usuario = this.usuarioService.getUsuario();
-      poster.isAberto = true;
+      this.poster = this.form.value;
+      this.poster.usuario = this.usuarioService.getUsuario();
+      this.poster.isAberto = true;
     }
   }
 
@@ -97,10 +97,12 @@ export class PosterComponent implements OnInit, OnDestroy, OnChanges {
     this.posterService.post(this.formData).subscribe(res => console.log(res))
   } */
     if (this.isEdit) {
-      this.preencherPoster(this.posterEdit);
-      this.posterService.updatePoster(this.posterEdit).subscribe((res) => {});
+      this.preencherPoster();
+      this.posterService.updatePoster(this.posterEdit).subscribe((res) => {
+        this.mensagensService.addMessage('Postagem editada com Sucesso!');
+      });
     } else {
-      this.preencherPoster(this.poster);
+      this.preencherPoster();
       this.posterService.post(this.poster).subscribe((res) => {
         this.mensagensService.addMessage('Postagem realizada com Sucesso!');
         this.resetForm();

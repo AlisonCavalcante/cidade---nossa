@@ -17,7 +17,6 @@ import { FiltrosLateraisComponent } from './components/filtros-laterais/filtros-
 import { ComentariosComponent } from './components/comentarios/comentarios.component';
 import { HashtagsPipe } from './shared/pipes/hashtags.pipe';
 import { DataTransformPipePipe } from './shared/data-transform-pipe.pipe';
-import { FooterComponent } from './components/footer/footer.component';
 import { SharedModule } from './shared/shared.module';
 
 @NgModule({
@@ -33,7 +32,6 @@ import { SharedModule } from './shared/shared.module';
     DataTransformPipePipe,
     ComentariosComponent,
     HashtagsPipe,
-    FooterComponent,
   ],
   imports: [
     BrowserModule,
